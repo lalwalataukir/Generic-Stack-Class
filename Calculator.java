@@ -35,39 +35,39 @@ public class Calculator
     // function to evaluate postfix expresssion
     public int evaluatePostFix(String s) throws InvalidPostfixException 
     {
-        // check for any negative integer
-        for(int i=0; i<s.length(); i++)
+        // operator and operands need to be separated by one or more spaces
+        for (int i=0; i<s.length(); i++)
         {
-            if (i<s.length()-1 && s.charAt(i)=='-' && s.charAt(i+1)-'0'>=0 && s.charAt(i+1)-'0'<=9)
+            if (i==0 && (s.charAt(i)=='+' || s.charAt(i)=='-' || s.charAt(i)=='*'))
                 throw new InvalidPostfixException();
+            else if (i>0 && i<=s.length()-2)
+            {
+                if (s.charAt(i)=='+' || s.charAt(i)=='-' || s.charAt(i)=='*')
+                {
+                    if (s.charAt(i + 1) != ' ' || s.charAt(i - 1) != ' ')
+                        throw new InvalidPostfixException();
+                }
+            }
         }
-
+        
         MyStack stack = new MyStack();
         Utili uti = new Utili();
-        for (int i = 0; i < s.length();) 
-        {
+        for (int i = 0; i < s.length();) {
             if (s.charAt(i) == ' ') // skip spaces
             {
                 i++;
-            } 
-            else if (i < s.length() && s.charAt(i) - '0' >= 0 && s.charAt(i) - '0' <= 9) // push integer into the stack
+            } else if (i < s.length() && s.charAt(i) - '0' >= 0 && s.charAt(i) - '0' <= 9) // push integer into the stack
             {
                 int operand = uti.grab_number(s, i);
                 stack.push(operand);
                 i = i + uti.numOfDigits(operand);
-            } 
-            else if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*')
-            {
-                if ((stack.stack_top_index + 1) < 2) 
-                {
+            } else if (s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*') {
+                if ((stack.stack_top_index + 1) < 2) {
                     throw new InvalidPostfixException();
-                } 
-                else 
-                {
+                } else {
                     // take out 2 elements and operate on them
                     int ele1 = 0, ele2 = 0;
-                    try  
-                    {
+                    try {
                         ele1 = (int) stack.pop();
                         ele2 = (int) stack.pop();
                     } catch (Exception e) {
@@ -82,26 +82,19 @@ public class Calculator
 
                     i++;
                 }
-            } 
-            else 
-            {
+            } else {
                 throw new InvalidPostfixException();
             }
         }
         int answer = 0;
-        if (stack.stack_top_index + 1 == 1) 
-        {
-            try 
-            {
+        // if stack is of size 1, then return the only element present in stack, else throw exception
+        if (stack.stack_top_index + 1 == 1) {
+            try {
                 answer = (int) stack.top();
-            } 
-            catch (Exception e) 
-            {
+            } catch (Exception e) {
                 // TODO: handle exception
             }
-        } 
-        else 
-        {
+        } else {
             throw new InvalidPostfixException();
         }
         return answer;
