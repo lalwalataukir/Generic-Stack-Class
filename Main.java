@@ -153,56 +153,10 @@ public class Main {
         }
     }
 
-    static void runCalcTestCases() {
-        Calculator calc = new Calculator();
-        try {
-            Scanner inps = new Scanner(new FileInputStream("calcTestCases.txt"));
-            Scanner outs = new Scanner(new FileInputStream("calcOut.txt"));
-            int t = inps.nextInt();
-            System.out.printf("** Running %d tests for part B: calculator **\n\n", t);
-            int passed = 0;
-            for (int ti = 1; ti <= t; ++ti) {
-                String inp = "";
-                while (inp.length() == 0)
-                    inp = inps.nextLine();
-                String gold_out = "";
-                while (gold_out.length() == 0)
-                    gold_out = outs.nextLine();
-                boolean status = true;
-                try {
-                    String ans = calc.convertExpression(inp);
-                    if (!ans.equals(gold_out)) {
-                        status = false;
-                        System.out.println("In test case " + ti);
-                        System.out.println("\tExpected: " + gold_out);
-                        System.out.println("\tGot: " + ans);
-                    }
-                } catch (InvalidExprException e) {
-                    if (!gold_out.equals("E")) {
-                        status = false;
-                        System.out.println("In test case " + ti);
-                        System.out.println("\tExpected: " + gold_out);
-                        System.out.println("\tGot: InvalidExprException");
-                    }
-                }
-                if (status) {
-                    ++passed;
-                    System.out.printf("Test case %d passed!\n", ti);
-                } else {
-                    System.out.printf("Test case %d FAILED :/\n", ti);
-                }
-            }
-            System.out.printf("\n[%d/%d] passed\n\n", passed, t);
-            inps.close();
-            outs.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("calcTestCases.txt not found");
-        }
-    }
 
     public static void main(String[] args) {
         runStackTestCases();
         runPostfixTestCases();
-        runCalcTestCases();
+        // runCalcTestCases();
     }
 }
