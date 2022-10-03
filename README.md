@@ -6,3 +6,5 @@
 
 # Postfix Evaluator
 * Used generic Stack Class for evaluating postfix expressions
+
+Assignment Problem Statement: https://github.com/lalwalataukir/generic-stack-class/blob/main/ass1.pdf
