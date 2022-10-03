@@ -6,5 +6,6 @@
 
 # Postfix Evaluator
 * Used generic Stack Class for evaluating postfix expressions
+* Evaluated postfix expression in O(|input string length|) time complexity
 
 Assignment Problem Statement: https://github.com/lalwalataukir/generic-stack-class/blob/main/ass1.pdf
