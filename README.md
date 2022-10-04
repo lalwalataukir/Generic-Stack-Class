@@ -9,9 +9,9 @@
 * Evaluated postfix expression in ```O(|input string|)``` time complexity
 
 # Running code
-* ``stackTestCases.txt`` contained test cases for generic Stack Class, ``stackOut.txt`` contains expected outputs
-* ``postFixTestCases.txt`` contained test cases for generic Stack Class, ``postFixOut.txt`` contains expected outputs
-* For evaluating on new test cases, add the new test case in ``stackTestCases.txt/postFixTestCases.txt`` files and corresponding expected output in ``stackOut.txt/postFixOut.txt`` file respectively
+* stackTestCases.txt contained test cases for generic Stack Class, stackOut.txt contains expected outputs
+* postFixTestCases.txt contained test cases for generic Stack Class, postFixOut.txt contains expected outputs
+* For evaluating on new test cases, add the new test case in stackTestCases.txt/postFixTestCases.txt files and corresponding expected output in stackOut.txt/postFixOut.txt file respectively
 * For compiling use ```javac StackInterface.java MyStack.java Calculator.java Main.java``` and for running use ```java Main``` in the terminal
 
 Assignment Problem Statement: https://github.com/lalwalataukir/generic-stack-class/blob/main/ass1.pdf
